@@ -1,0 +1,18 @@
+#cloud-config
+apt_sources:
+  - source: "deb [arch=amd64] https://download.docker.com/linux/ubuntu $RELEASE stable"
+    keyid: "0x8d81803c0ebfcd88"
+    filename: 01-docker-ce.list
+packages:
+ - docker-ce
+ - curl
+bootcmd:
+    - curl -L https://github.com/docker/compose/releases/download/1.14.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose
+    - adduser ubuntu docker && usermod -g docker ubuntu
+    - sed -i 's/^\(GRUB_CMDLINE_LINUX=\).*/\1"cgroup_enable=memory swapaccount=1"/' /etc/default/grub
+power_state:
+  delay: "+0"
+  mode: reboot
+  message: Bye Bye
+  timeout: 10
+  condition: /usr/local/bin/docker-compose --version && update-grub
