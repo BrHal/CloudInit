@@ -1,7 +1,7 @@
 # CloudInit
 Some cloud-config stuff
 
-Helpful if your VM needs network troubleshooting or has no network yet. With this tool you will be able to logion/passwd a cloud image from your local virtualization. 
+Helpful if your VM needs network troubleshooting or has no network yet. With this tool you will be able to login/passwd a cloud image from your local virtualization. 
 
 mkSeed.sh is used to build a vfat cloud-init "NoCloud" compliant image file.
 
