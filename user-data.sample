@@ -1,0 +1,13 @@
+#cloud-config
+users:
+  - default
+  - name: boulderdash
+    gecos: Boulder Dash
+    primary_group: boulder
+    groups: users, admin
+    lock_passwd: false
+    passwd: <encrypted password here - mkpasswd --method=SHA-512 --rounds=4096>
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    ssh_authorized_keys:
+      - <public key here>
+
